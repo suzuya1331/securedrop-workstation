@@ -42,6 +42,7 @@ TAILS_GIT_JOURNALIST_INTERFACE_CONFIG = (
 # preloaded dispvms. Needed due to inclusion of 'qvm.preload-disposables'
 # indirectly via 'qvm.default-dvm'. Removing this does not mean preloaded
 # disposables are disabled. Just that they don't get enabled on provisioning.
+# FIXME: https://github.com/freedomofpress/securedrop-workstation/issues/1523
 PILLAR_DISABLE_PRELOAD = {"qvm": {"dom0": {"preload": False}}}
 
 sys.path.insert(1, os.path.join(SCRIPTS_PATH, "scripts/"))
@@ -236,6 +237,9 @@ class template_upgrade_handler(ContextDecorator):
         ]
 
     def template_upgrades_needed(self) -> bool:
+        # NOTE: a more clever detection is warranted, but inspecting what salt is going
+        # to do is not a particular thing salt is good at. This is left here for when
+        # re-implemented with another IaC tool that doesn't need wrapper scripts like these.
         templ_current_version_checks = [
             q.features["os-version"] == DEBIAN_VERSION
             for q in Qubes().domains
