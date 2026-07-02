@@ -136,8 +136,6 @@ def provision_and_configure() -> None:
             ["sys-usb"],
         )
 
-    print("Provisioning complete. Please reboot to complete the installation.")
-
 
 def run_cmd(args: list[str]) -> None:
     print(f"Running \"{' '.join(args)}\"")
@@ -705,6 +703,7 @@ def main() -> None:
         refresh_salt()
         with suppress_preloaded_disposables():
             provision_and_configure()
+        print("Provisioning complete. Please reboot to complete the installation.")
 
     elif args.uninstall:
         print(
