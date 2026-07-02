@@ -28,7 +28,9 @@ DEFAULT_SD_LOG_GB = 5
 
 SCRIPTS_PATH = "/usr/share/securedrop-workstation-dom0-config/"
 SALT_PATH = "/srv/salt/securedrop_salt/"
-BASE_TEMPLATE = "debian-13-minimal"
+
+DEBIAN_VERSION = "13"
+BASE_TEMPLATE = f"debian-{DEBIAN_VERSION}-minimal"
 
 SUBMISSION_KEY = "sd-journalist.sec"
 TAILS_PATH = "/run/media/user/TailsData/"
@@ -47,8 +49,6 @@ PILLAR_DISABLE_PRELOAD = {"qvm": {"dom0": {"preload": False}}}
 
 sys.path.insert(1, os.path.join(SCRIPTS_PATH, "scripts/"))
 from validate_config import SDWConfigValidator  # noqa: E402
-
-DEBIAN_VERSION = "13"
 
 
 def parse_args() -> argparse.Namespace:
