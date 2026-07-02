@@ -175,7 +175,7 @@ class template_upgrade_handler(ContextDecorator):
     Temporarily prevents startup of managed qubes
 
     Necessary during provisioning, particularly in template changes, where
-    all qubes dependent dependent on a template (including disposables only
+    all qubes dependent on a template (including disposables only
     indirectly based on it) need to be shut down, otherwise provisioning fails.
 
     NOTE: deferred template changes may make this redundant
@@ -220,7 +220,7 @@ class template_upgrade_handler(ContextDecorator):
 
         # Obtain the list again since:
         #  - some qubes may have been removed (e.g. old templates)
-        #  - somes cloned qubes may have inherited prohibit-startup
+        #  - some cloned qubes may have inherited prohibit-startup
         for qube in self.affected_qubes():
             if "prohibit-start" in qube.features:
                 del qube.features["prohibit-start"]
