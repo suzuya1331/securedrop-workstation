@@ -222,7 +222,8 @@ class template_upgrade_handler(ContextDecorator):
         #  - some qubes may have been removed (e.g. old templates)
         #  - somes cloned qubes may have inherited prohibit-startup
         for qube in self.affected_qubes():
-            del qube.features["prohibit-start"]
+            if "prohibit-start" in qube.features:
+                del qube.features["prohibit-start"]
 
         return False
 
